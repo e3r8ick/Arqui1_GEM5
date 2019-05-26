@@ -62,6 +62,7 @@ import devices
 
 customICache=HPI.HPI_ICache()
 customDCache=HPI.HPI_DCache()
+HPICPU = HPI.HPI()
 
 # Pre-defined CPU configurations. Each tuple must be ordered as : (cpu_class,
 # l1_icache_class, l1_dcache_class, walk_cache_class, l2_Cache_class). Any of
@@ -72,7 +73,7 @@ cpu_types = {
                devices.L1I, devices.L1D,
                devices.WalkCache,
                devices.L2),
-    "hpi" : ( HPI.HPI,
+    "hpi" : ( HPICPU,
               customICache, customDCache,
               HPI.HPI_WalkCache,
               HPI.HPI_L2)
@@ -90,26 +91,37 @@ class SimpleSeSystem(System):
     def __init__(self, args, **kwargs):
         super(SimpleSeSystem, self).__init__(**kwargs)
 
-        # Define custom cache sizes
-        cache_line_size = args.cache_line_size
-        customICache.size=args.cache_size
-        customDCache.size=args.cache_size
+        self.cache_line_size = args.cache_line_size
+        customICache.size=args.Icache_size
+        customDCache.size=args.Dcache_size
 
-        print("cache line size:  %d " % (cache_line_size))
-        print("I Cache size:  %s" % (customICache.size))
-        print("D Cache size:  %s" % (customDCache.size))
-
-        # Define cache associativity
-        customICache.assoc = args.cache_assoc
-        customDCache.assoc = args.cache_assoc
-
-        print("Cache associativity:  %s" % (customICache.assoc))
-
+        customICache.assoc=args.Icache_assoc
+        customDCache.assoc=args.Dcache_assoc
+        
+        print("cache line size:  %d " % (self.cache_line_size))
+        print("I Cache size:     %s" % (customICache.size))
+        print("D Cache size:     %s" % (customDCache.size))
         # Setup book keeping to be able to use CpuClusters from the
         # devices module.
         self._clusters = []
         self._num_cpus = 0
-
+        
+        if args.branch_predictor == "TournamentBP":
+            HPICPU.branchPred = TournamentBP()
+            HPICPU.branchPred.BTBEntries = args.BTBEntries
+            HPICPU.branchPred.localPredictorSize = args.local_predictor_size
+            HPICPU.branchPred.globalPredictorSize = args.global_predictor_size
+            HPICPU.branchPred.choicePredictorSize = args.choice_predictor_size
+        elif args.branch_predictor == "LocalBP":
+            HPICPU.branchPred=LocalBP()
+            HPICPU.branchPred.BTBEntries = args.BTBEntries
+            HPICPU.branchPred.localPredictorSize = args.local_predictor_size
+        else:
+            HPICPU.branchPred=BiModeBP()
+            HPICPU.branchPred.BTBEntries = args.BTBEntries
+            HPICPU.branchPred.globalPredictorSize = args.global_predictor_size
+            HPICPU.branchPred.choicePredictorSize = args.choice_predictor_size
+        
         # Create a voltage and clock domain for system components
         self.voltage_domain = VoltageDomain(voltage="3.3V")
         self.clk_domain = SrcClockDomain(clock="1GHz",
@@ -204,7 +216,7 @@ def main():
     parser.add_argument("commands_to_run", metavar="command(s)", nargs='*',
                         help="Command(s) to run")
     parser.add_argument("--cpu", type=str, choices=cpu_types.keys(),
-                        default="hpi",
+                        default="atomic",
                         help="CPU model to use")
     parser.add_argument("--cpu-freq", type=str, default="4GHz")
     parser.add_argument("--num-cores", type=int, default=1,
@@ -219,12 +231,26 @@ def main():
     parser.add_argument("--mem-size", action="store", type=str,
                         default="2GB",
                         help="Specify the physical memory size")
-    parser.add_argument("--cache-size", type=str, default='8kB',
-                        help = "cache size in KB")
+    parser.add_argument("--Icache-size", type=str, default='8kB',
+                        help = "Icache size in KB")
+    parser.add_argument("--Dcache-size", type=str, default='8kB',
+                        help = "Dcache size in KB")
+    parser.add_argument("--Icache-assoc", type=int, default=2,
+                        help = "Icache associativity")
+    parser.add_argument("--Dcache-assoc", type=int, default=4,
+                        help = "Dcache associativity")
     parser.add_argument("--cache-line-size", type=int, default=64,
                         help = "cache line size in bytes")
-    parser.add_argument("--cache-assoc", type=int, default=4,
-                        help = "cache associativity 0: non associative, n: n-associative")
+    parser.add_argument("--branch-predictor", type=str, default='HPI_BP',
+                        help = "Branch predictor type")
+    parser.add_argument("--BTBEntries", type=int, default=4096,
+                        help = "cache line size in bytes") 
+    parser.add_argument("--local-predictor-size", type=int, default=2048,
+                        help = "local predictor size")
+    parser.add_argument("--global-predictor-size", type=int, default=8192,
+                        help = "global predictor size")  
+    parser.add_argument("--choice-predictor-size", type=int, default=8192,
+                        help = "choice predictor size")   
 
     args = parser.parse_args()
 
