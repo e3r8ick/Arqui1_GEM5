@@ -1,0 +1,1 @@
+./build/ARM/gem5.opt ./configs/example/arm/starter_se.py --cpu=hpi --Icache-size='16kB' --Dcache-size='32kB' --cache-line-size=128 --Icache-assoc=8 --Dcache-assoc=16 --branch-predictor='LocalBP' --BTBEntries=1024 --local-predictor-size=1024 --global-predictor-size=4096 --choice-predictor-size=4096 ./tests/test-progs/hello/bin/arm/linux/hello
