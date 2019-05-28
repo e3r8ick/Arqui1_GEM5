@@ -113,7 +113,7 @@ BPredUnit::regStats()
         .name(name() + ".BTBMisses")
         .desc("Number of BTB misses")
         ;
-      BTBMisses = (BTBLookups-BTBHits);
+      BTBMisses = (BTBLookups - BTBHits);
 
     BTBCorrect
         .name(name() + ".BTBCorrect")
@@ -132,7 +132,7 @@ BPredUnit::regStats()
         .name(name() + ".BTBMissesPct")
         .desc("BTB Miss Percentage")
         .precision(6);
-    BTBHitPct = (BTBMisses / BTBLookups) * 100;
+    BTBMissesPct = (BTBMisses / BTBLookups) * 100;
 
     usedRAS
         .name(name() + ".usedRAS")
