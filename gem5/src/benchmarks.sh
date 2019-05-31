@@ -1,13 +1,13 @@
 #Benchmark Treesort consiste en crear un arbol binario de 100 elementos aleatorios y luego lo ordena
 ./build/ARM/gem5.opt -d se_results/Treesort configs/example/arm/starter_se.py \--cpu="hpi" /home/e3r8ick/Arqui1/Proyecto2/se-benchmarks/Treesort
 
-#Benchmark Bubblesort consiste en
+#Benchmark Bubblesort consiste en crear un arrigle de 100 elementos y realizar un bubble sort
 ./build/ARM/gem5.opt -d se_results/Bubblesort configs/example/arm/starter_se.py \--cpu="hpi" /home/e3r8ick/Arqui1/Proyecto2/se-benchmarks/Bubblesort
 
-#Benchmark FloatMM consiste en
+#Benchmark FloatMM consiste en multiplicar dos matrices de 5000x5000 de flotantes
 ./build/ARM/gem5.opt -d se_results/FloatMM configs/example/arm/starter_se.py \--cpu="hpi" /home/e3r8ick/Arqui1/Proyecto2/se-benchmarks/FloatMM
 
-#Benchmark IntMM consiste en
+#Benchmark IntMM consiste en multiplicar dos matrices de 5000x5000 de enteros
 ./build/ARM/gem5.opt -d se_results/IntMM configs/example/arm/starter_se.py \--cpu="hpi" /home/e3r8ick/Arqui1/Proyecto2/se-benchmarks/IntMM
 
 #Benchmark Oscar consiste en
