@@ -31,5 +31,3 @@ system.mem_ctrls0_0.averagePower
 system.mem_ctrls0_1.averagePower
 system.mem_ctrls1_0.averagePower
 system.mem_ctrls1_1.averagePower
-
-
