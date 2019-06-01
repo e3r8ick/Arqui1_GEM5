@@ -101,7 +101,7 @@ def runParser(fileName):
 # Return: a vector with tags for the variables in the same order
 def getTags():
     tagsFile = "Files/nameTags.txt"
-    tagsVector = getValuesVector (tagsFile):
+    tagsVector = getValuesVector (tagsFile)
     return tagsVector
 
 

@@ -27,7 +27,7 @@ L2 instr miss rate
 L2 data miss rate
 L2 instr miss latency
 L2 data miss latency
-Cntrl00 Avg Power
-Cntrl01 Avg Power
-Cntrl10 Avg Power
-Cntrl11 Avg Power
+Cntrl 00 Avg Power
+Cntrl 01 Avg Power
+Cntrl 10 Avg Power
+Cntrl 11 Avg Power
