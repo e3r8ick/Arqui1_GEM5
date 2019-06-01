@@ -611,7 +611,7 @@ def Queens_benchmark():
         local_predictor_size = local_predictor_size * 2
 
 def main_benchmark():
-    Oscar_benchmark()
+    """ Oscar_benchmark()
     Treesort_benchmark()
     Bubblesort_benchmark()
     FloatMM_benchmark()
@@ -620,7 +620,7 @@ def main_benchmark():
     Puzzle_benchmark()
     Towers_benchmark()
     RealMM_benchmark()
-    Quicksort_benchmark()
+    Quicksort_benchmark() """
     Queens_benchmark()
 
 main_benchmark()

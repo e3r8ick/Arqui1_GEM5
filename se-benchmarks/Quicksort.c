@@ -122,16 +122,14 @@ int Rand () {
 }
 
 
-
-    /* Sorts an array using treesort */
-
-void tInitarr() {
-	int i;
-	long temp;  /* converted temp to long for 16 bit WR*/
+    /* Sorts an array using quicksort */
+void Initarr() {
+	int i; /* temp */
+	long temp;  /* made temp a long for 16 bit WR*/
 	Initrand();
 	biggest = 0; littlest = 0;
 	for ( i = 1; i <= sortelements; i++ ) {
-	    temp = Rand(); 
+	    temp = Rand();
 	    /* converted constants to long in next stmt, typecast back to int WR*/
 	    sortlist[i] = (int)(temp - (temp/100000L)*100000L - 50000L);
 	    if ( sortlist[i] > biggest ) biggest = sortlist[i];
@@ -139,49 +137,38 @@ void tInitarr() {
 	}
 }
 
-void CreateNode (struct node **t, int n) {
-		*t = (struct node *)malloc(sizeof(struct node)); 
-		(*t)->left = nil; (*t)->right = nil;
-		(*t)->val = n;
+void Quicksort( int a[], int l, int r) {
+	/* quicksort the array A from start to finish */
+	int i,j,x,w;
+
+	i=l; j=r;
+	x=a[(l+r) / 2];
+	do {
+	    while ( a[i]<x ) i = i+1;
+	    while ( x<a[j] ) j = j-1;
+	    if ( i<=j ) {
+			w = a[i];
+			a[i] = a[j];
+			a[j] = w;
+			i = i+1;    j= j-1;
+		}
+	} while ( i<=j );
+	if ( l <j ) Quicksort(a,l,j);
+	if ( i<r ) Quicksort(a,i,r);
 }
 
-void Insert(int n, struct node *t) {
-	/* insert n into tree */
-	if ( n > t->val ) 
-		if ( t->left == nil ) CreateNode(&t->left,n);
-		else Insert(n,t->left);
-	else if ( n < t->val )
-		if ( t->right == nil ) CreateNode(&t->right,n);
-		else Insert(n,t->right);
-}
 
-int Checktree(struct node *p) {
-    /* check by inorder traversal */
-    int result;
-    result = true;
-	if ( p->left != nil ) 
-	   if ( p->left->val <= p->val ) result=false;
-	   else result = Checktree(p->left) && result;
-	if ( p->right != nil )
-	   if ( p->right->val >= p->val ) result = false;
-	   else result = Checktree(p->right) && result;
-	return( result);
-} /* checktree */
-
-void Trees(int run) {
-    int i;
-    tInitarr();
-    tree = (struct node *)malloc(sizeof(struct node)); 
-    tree->left = nil; tree->right=nil; tree->val=sortlist[1];
-    for ( i = 2; i <= sortelements; i++ )
-		Insert(sortlist[i],tree);
-	printf("%d\n", sortlist[2 + run]);
-    if ( ! Checktree(tree) ) printf ( " Error in Tree.\n");
+void Quick (int run) {
+    Initarr();
+    Quicksort(sortlist,1,sortelements);
+    if ( (sortlist[1] != littlest) || (sortlist[sortelements] != biggest) )	printf ( " Error in Quick.\n");
+	  printf("%d\n", sortlist[run + 1]);
 }
 
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Trees(i);
+	for (i = 0; i < 20; i++) Quick(i);
 	return 0;
 }
+

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define float double
+
 #define  nil		0
 #define	 false		0
 #define  true		1
@@ -122,66 +124,38 @@ int Rand () {
 }
 
 
+    /* Multiplies two real matrices. */
 
-    /* Sorts an array using treesort */
+void rInitmatrix ( float m[rowsize+1][rowsize+1] ) {
+	int temp, i, j;
+	for ( i = 1; i <= rowsize; i++ )
+	    for ( j = 1; j <= rowsize; j++ ) {
+	    	temp = Rand();
+			m[i][j] = (float)(temp - (temp/120)*120 - 60)/3;
+        }
+}
 
-void tInitarr() {
+void rInnerproduct(float *result, float a[rowsize+1][rowsize+1], float b[rowsize+1][rowsize+1], int row, int column) {
+	/* computes the inner product of A[row,*] and B[*,column] */
 	int i;
-	long temp;  /* converted temp to long for 16 bit WR*/
-	Initrand();
-	biggest = 0; littlest = 0;
-	for ( i = 1; i <= sortelements; i++ ) {
-	    temp = Rand(); 
-	    /* converted constants to long in next stmt, typecast back to int WR*/
-	    sortlist[i] = (int)(temp - (temp/100000L)*100000L - 50000L);
-	    if ( sortlist[i] > biggest ) biggest = sortlist[i];
-	    else if ( sortlist[i] < littlest ) littlest = sortlist[i];
-	}
+	*result = 0.0f;
+	for (i = 1; i<=rowsize; i++) *result = *result+a[row][i]*b[i][column];
 }
 
-void CreateNode (struct node **t, int n) {
-		*t = (struct node *)malloc(sizeof(struct node)); 
-		(*t)->left = nil; (*t)->right = nil;
-		(*t)->val = n;
-}
-
-void Insert(int n, struct node *t) {
-	/* insert n into tree */
-	if ( n > t->val ) 
-		if ( t->left == nil ) CreateNode(&t->left,n);
-		else Insert(n,t->left);
-	else if ( n < t->val )
-		if ( t->right == nil ) CreateNode(&t->right,n);
-		else Insert(n,t->right);
-}
-
-int Checktree(struct node *p) {
-    /* check by inorder traversal */
-    int result;
-    result = true;
-	if ( p->left != nil ) 
-	   if ( p->left->val <= p->val ) result=false;
-	   else result = Checktree(p->left) && result;
-	if ( p->right != nil )
-	   if ( p->right->val >= p->val ) result = false;
-	   else result = Checktree(p->right) && result;
-	return( result);
-} /* checktree */
-
-void Trees(int run) {
-    int i;
-    tInitarr();
-    tree = (struct node *)malloc(sizeof(struct node)); 
-    tree->left = nil; tree->right=nil; tree->val=sortlist[1];
-    for ( i = 2; i <= sortelements; i++ )
-		Insert(sortlist[i],tree);
-	printf("%d\n", sortlist[2 + run]);
-    if ( ! Checktree(tree) ) printf ( " Error in Tree.\n");
+void Mm (int run)    {
+    int i, j;
+    Initrand();
+    rInitmatrix (rma);
+    rInitmatrix (rmb);
+    for ( i = 1; i <= rowsize; i++ )
+		for ( j = 1; j <= rowsize; j++ ) 
+			rInnerproduct(&rmr[i][j],rma,rmb,i,j);
+	printf("%f\n", rmr[run + 1][run + 1]);
 }
 
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Trees(i);
+	for (i = 0; i < 2; i++) Mm(i);
 	return 0;
 }

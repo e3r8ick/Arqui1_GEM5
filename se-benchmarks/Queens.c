@@ -122,66 +122,67 @@ int Rand () {
 }
 
 
+    /* The eight queens problem, solved 50 times. */
+/*
+	type    
+	    doubleboard =   2..16;
+	    doublenorm  =   -7..7;
+	    boardrange  =   1..8;
+	    aarray      =   array [boardrange] of boolean;
+	    barray      =   array [doubleboard] of boolean;
+	    carray      =   array [doublenorm] of boolean;
+	    xarray      =   array [boardrange] of boardrange;
+*/
 
-    /* Sorts an array using treesort */
-
-void tInitarr() {
-	int i;
-	long temp;  /* converted temp to long for 16 bit WR*/
-	Initrand();
-	biggest = 0; littlest = 0;
-	for ( i = 1; i <= sortelements; i++ ) {
-	    temp = Rand(); 
-	    /* converted constants to long in next stmt, typecast back to int WR*/
-	    sortlist[i] = (int)(temp - (temp/100000L)*100000L - 50000L);
-	    if ( sortlist[i] > biggest ) biggest = sortlist[i];
-	    else if ( sortlist[i] < littlest ) littlest = sortlist[i];
+void Try(int i, int *q, int a[], int b[], int c[], int x[]) {
+	int     j;
+	j = 0;
+	*q = false;
+	while ( (! *q) && (j != 8) ) {
+		j = j + 1;
+		*q = false;
+		if ( b[j] && a[i+j] && c[i-j+7] ) {
+			x[i] = j;
+		    b[j] = false;
+		    a[i+j] = false;
+		    c[i-j+7] = false;
+		    if ( i < 8 ) {
+		    	Try(i+1,q,a,b,c,x);
+				if ( ! *q ) {
+					b[j] = true;
+				    a[i+j] = true;
+				    c[i-j+7] = true;
+				}
+			}
+		    else *q = true;
+	    }
 	}
 }
+	
+void Doit () {
+	int i,q;
+	int a[9], b[17], c[15], x[9];
+	i = 0 - 7;
+	while ( i <= 16 ) {
+		if ( (i >= 1) && (i <= 8) ) a[i] = true;
+	    if ( i >= 2 ) b[i] = true;
+	    if ( i <= 7 ) c[i+7] = true;
+	    i = i + 1;
+	}
 
-void CreateNode (struct node **t, int n) {
-		*t = (struct node *)malloc(sizeof(struct node)); 
-		(*t)->left = nil; (*t)->right = nil;
-		(*t)->val = n;
+	Try(1, &q, b, a, c, x);
+	if ( !q ) printf (" Error in Queens.\n");
 }
 
-void Insert(int n, struct node *t) {
-	/* insert n into tree */
-	if ( n > t->val ) 
-		if ( t->left == nil ) CreateNode(&t->left,n);
-		else Insert(n,t->left);
-	else if ( n < t->val )
-		if ( t->right == nil ) CreateNode(&t->right,n);
-		else Insert(n,t->right);
-}
-
-int Checktree(struct node *p) {
-    /* check by inorder traversal */
-    int result;
-    result = true;
-	if ( p->left != nil ) 
-	   if ( p->left->val <= p->val ) result=false;
-	   else result = Checktree(p->left) && result;
-	if ( p->right != nil )
-	   if ( p->right->val >= p->val ) result = false;
-	   else result = Checktree(p->right) && result;
-	return( result);
-} /* checktree */
-
-void Trees(int run) {
+void Queens (int run) {
     int i;
-    tInitarr();
-    tree = (struct node *)malloc(sizeof(struct node)); 
-    tree->left = nil; tree->right=nil; tree->val=sortlist[1];
-    for ( i = 2; i <= sortelements; i++ )
-		Insert(sortlist[i],tree);
-	printf("%d\n", sortlist[2 + run]);
-    if ( ! Checktree(tree) ) printf ( " Error in Tree.\n");
+    for ( i = 1; i <= 50; i++ ) Doit();
+	 printf("%d\n", run + 1);
 }
 
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Trees(i);
+	for (i = 0; i < 20; i++) Queens(i);
 	return 0;
 }

@@ -121,67 +121,49 @@ int Rand () {
     return( (int)seed );     /* typecast back to int WR*/
 }
 
+    /* Permutation program, heavily recursive, written by Denny Brown. */
 
+void Swap ( int *a, int *b ) {
+	int t;
+	t = *a;  *a = *b;  *b = t;
+}
 
-    /* Sorts an array using treesort */
-
-void tInitarr() {
+void Initialize () {
 	int i;
-	long temp;  /* converted temp to long for 16 bit WR*/
-	Initrand();
-	biggest = 0; littlest = 0;
-	for ( i = 1; i <= sortelements; i++ ) {
-	    temp = Rand(); 
-	    /* converted constants to long in next stmt, typecast back to int WR*/
-	    sortlist[i] = (int)(temp - (temp/100000L)*100000L - 50000L);
-	    if ( sortlist[i] > biggest ) biggest = sortlist[i];
-	    else if ( sortlist[i] < littlest ) littlest = sortlist[i];
+	for ( i = 1; i <= 7; i++ ) {
+	    permarray[i]=i-1;
 	}
 }
 
-void CreateNode (struct node **t, int n) {
-		*t = (struct node *)malloc(sizeof(struct node)); 
-		(*t)->left = nil; (*t)->right = nil;
-		(*t)->val = n;
-}
+void Permute (int n) {   /* permute */
+	int k;
+	pctr = pctr + 1;
+	if ( n!=1 )  {
+	    Permute(n-1);
+	    for ( k = n-1; k >= 1; k-- ) {
+			Swap(&permarray[n],&permarray[k]);
+			Permute(n-1);
+			Swap(&permarray[n],&permarray[k]);
+		}
+    }
+}     /* permute */
 
-void Insert(int n, struct node *t) {
-	/* insert n into tree */
-	if ( n > t->val ) 
-		if ( t->left == nil ) CreateNode(&t->left,n);
-		else Insert(n,t->left);
-	else if ( n < t->val )
-		if ( t->right == nil ) CreateNode(&t->right,n);
-		else Insert(n,t->right);
-}
-
-int Checktree(struct node *p) {
-    /* check by inorder traversal */
-    int result;
-    result = true;
-	if ( p->left != nil ) 
-	   if ( p->left->val <= p->val ) result=false;
-	   else result = Checktree(p->left) && result;
-	if ( p->right != nil )
-	   if ( p->right->val >= p->val ) result = false;
-	   else result = Checktree(p->right) && result;
-	return( result);
-} /* checktree */
-
-void Trees(int run) {
+void Perm ()    {   /* Perm */
     int i;
-    tInitarr();
-    tree = (struct node *)malloc(sizeof(struct node)); 
-    tree->left = nil; tree->right=nil; tree->val=sortlist[1];
-    for ( i = 2; i <= sortelements; i++ )
-		Insert(sortlist[i],tree);
-	printf("%d\n", sortlist[2 + run]);
-    if ( ! Checktree(tree) ) printf ( " Error in Tree.\n");
-}
+    pctr = 0;
+    for ( i = 1; i <= 5; i++ ) {
+		Initialize();
+		Permute(7);
+	}
+    if ( pctr != 43300 )
+	printf(" Error in Perm.\n");
+	printf("%d\n", pctr);
+}     /* Perm */
 
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Trees(i);
+	for (i = 0; i < 20; i++) Perm();
 	return 0;
 }
+
