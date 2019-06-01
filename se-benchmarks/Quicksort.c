@@ -34,8 +34,8 @@
 #define srtelements  500
 
     /* fft */
-#define fftsize 	 256 
-#define fftsize2 	 129  
+#define fftsize 	 256
+#define fftsize2 	 129
 /*
 type */
     /* Perm */
@@ -168,7 +168,6 @@ void Quick (int run) {
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Quick(i);
+	for (i = 0; i < 1; i++) Quick(i);
 	return 0;
 }
-

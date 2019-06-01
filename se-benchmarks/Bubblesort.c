@@ -34,8 +34,8 @@
 #define srtelements  500
 
     /* fft */
-#define fftsize 	 256 
-#define fftsize2 	 129  
+#define fftsize 	 256
+#define fftsize2 	 129
 /*
 type */
     /* Perm */
@@ -142,12 +142,12 @@ void Bubble(int run) {
 	int i, j;
 	bInitarr();
 	top=srtelements;
-	
+
 	while ( top>1 ) {
-		
+
 		i=1;
 		while ( i<top ) {
-			
+
 			if ( sortlist[i] > sortlist[i+1] ) {
 				j = sortlist[i];
 				sortlist[i] = sortlist[i+1];
@@ -155,7 +155,7 @@ void Bubble(int run) {
 			}
 			i=i+1;
 		}
-		
+
 		top=top-1;
 	}
 	if ( (sortlist[1] != littlest) || (sortlist[srtelements] != biggest) )
@@ -166,6 +166,6 @@ void Bubble(int run) {
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Bubble(i);
+	for (i = 0; i < 1; i++) Bubble(i);
 	return 0;
 }

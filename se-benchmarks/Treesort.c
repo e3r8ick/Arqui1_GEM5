@@ -34,8 +34,8 @@
 #define srtelements  500
 
     /* fft */
-#define fftsize 	 256 
-#define fftsize2 	 129  
+#define fftsize 	 256
+#define fftsize2 	 129
 /*
 type */
     /* Perm */
@@ -131,7 +131,7 @@ void tInitarr() {
 	Initrand();
 	biggest = 0; littlest = 0;
 	for ( i = 1; i <= sortelements; i++ ) {
-	    temp = Rand(); 
+	    temp = Rand();
 	    /* converted constants to long in next stmt, typecast back to int WR*/
 	    sortlist[i] = (int)(temp - (temp/100000L)*100000L - 50000L);
 	    if ( sortlist[i] > biggest ) biggest = sortlist[i];
@@ -140,14 +140,14 @@ void tInitarr() {
 }
 
 void CreateNode (struct node **t, int n) {
-		*t = (struct node *)malloc(sizeof(struct node)); 
+		*t = (struct node *)malloc(sizeof(struct node));
 		(*t)->left = nil; (*t)->right = nil;
 		(*t)->val = n;
 }
 
 void Insert(int n, struct node *t) {
 	/* insert n into tree */
-	if ( n > t->val ) 
+	if ( n > t->val )
 		if ( t->left == nil ) CreateNode(&t->left,n);
 		else Insert(n,t->left);
 	else if ( n < t->val )
@@ -159,7 +159,7 @@ int Checktree(struct node *p) {
     /* check by inorder traversal */
     int result;
     result = true;
-	if ( p->left != nil ) 
+	if ( p->left != nil )
 	   if ( p->left->val <= p->val ) result=false;
 	   else result = Checktree(p->left) && result;
 	if ( p->right != nil )
@@ -171,7 +171,7 @@ int Checktree(struct node *p) {
 void Trees(int run) {
     int i;
     tInitarr();
-    tree = (struct node *)malloc(sizeof(struct node)); 
+    tree = (struct node *)malloc(sizeof(struct node));
     tree->left = nil; tree->right=nil; tree->val=sortlist[1];
     for ( i = 2; i <= sortelements; i++ )
 		Insert(sortlist[i],tree);
@@ -182,6 +182,6 @@ void Trees(int run) {
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Trees(i);
+	for (i = 0; i < 1; i++) Trees(i);
 	return 0;
 }

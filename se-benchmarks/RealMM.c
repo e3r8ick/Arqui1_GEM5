@@ -36,8 +36,8 @@
 #define srtelements  500
 
     /* fft */
-#define fftsize 	 256 
-#define fftsize2 	 129  
+#define fftsize 	 256
+#define fftsize2 	 129
 /*
 type */
     /* Perm */
@@ -148,7 +148,7 @@ void Mm (int run)    {
     rInitmatrix (rma);
     rInitmatrix (rmb);
     for ( i = 1; i <= rowsize; i++ )
-		for ( j = 1; j <= rowsize; j++ ) 
+		for ( j = 1; j <= rowsize; j++ )
 			rInnerproduct(&rmr[i][j],rma,rmb,i,j);
 	printf("%f\n", rmr[run + 1][run + 1]);
 }
@@ -156,6 +156,6 @@ void Mm (int run)    {
 int main()
 {
 	int i;
-	for (i = 0; i < 2; i++) Mm(i);
+	for (i = 0; i < 1; i++) Mm(i);
 	return 0;
 }

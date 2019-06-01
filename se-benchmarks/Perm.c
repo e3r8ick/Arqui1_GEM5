@@ -34,8 +34,8 @@
 #define srtelements  500
 
     /* fft */
-#define fftsize 	 256 
-#define fftsize2 	 129  
+#define fftsize 	 256
+#define fftsize2 	 129
 /*
 type */
     /* Perm */
@@ -163,7 +163,6 @@ void Perm ()    {   /* Perm */
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Perm();
+	for (i = 0; i < 1; i++) Perm();
 	return 0;
 }
-
