@@ -1,0 +1,33 @@
+Idle Cycles
+CPI
+Simulated instr
+Float point instr
+Integer instr
+Load instr
+Store instr
+BTB Correct
+BTB Lookups
+BTB Misses
+BTB Misses Pct
+BP incorrect cond
+BP correct cond
+Dcache avg miss latency
+Dcache hits
+Dcache misses
+Dcache miss rate
+Icache avg miss latency
+Icache hits
+Icache misses
+Icache miss rate
+L2 instr accesses
+L2 data accesses
+L2 instr misses
+L2 data misses
+L2 instr miss rate
+L2 data miss rate
+L2 instr miss latency
+L2 data miss latency
+Cntrl00 Avg Power
+Cntrl01 Avg Power
+Cntrl10 Avg Power
+Cntrl11 Avg Power

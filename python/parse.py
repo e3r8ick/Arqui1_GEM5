@@ -84,9 +84,10 @@ def printMatrix(matrix, data):
 
 
 
-# Takes the stats.txt files, and a 
+# Takes the addres of a stats.txt files, and converts it into a matrix
+# fileName: address of the file, relative to the app
 #
-# Return: the matrix with variables and values
+# Return: the matrix with [variable, value] pairs
 def runParser(fileName):
     valuesFile = "Files/searchValues.txt"
     valuesVector = getValuesVector(valuesFile)
@@ -94,6 +95,14 @@ def runParser(fileName):
     clean = extract(parsedFile, valuesVector)
     printMatrix(clean, 1)
     return clean
+
+# Loads usable variable names for graphics
+#
+# Return: a vector with tags for the variables in the same order
+def getTags():
+    tagsFile = "Files/nameTags.txt"
+    tagsVector = getValuesVector (tagsFile):
+    return tagsVector
 
 
 # Development test
