@@ -166,6 +166,6 @@ void Bubble(int run) {
 int main()
 {
 	int i;
-	for (i = 0; i < 30; i++) Bubble(i);
+	for (i = 0; i < 20; i++) Bubble(i);
 	return 0;
 }

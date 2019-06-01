@@ -51,7 +51,7 @@ def Oscar_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/Oscar_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/Oscar")
         local_predictor_size = local_predictor_size * 2
 
@@ -107,7 +107,7 @@ def Treesort_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/Treesort_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/Treesort")
         local_predictor_size = local_predictor_size * 2
 
@@ -162,7 +162,7 @@ def Bubblesort_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/Bubblesort_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/Bubblesort")
         local_predictor_size = local_predictor_size * 2
 
@@ -217,7 +217,7 @@ def FloatMM_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/FloatMM_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/FloatMM")
         local_predictor_size = local_predictor_size * 2
 
@@ -272,7 +272,7 @@ def IntMM_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/IntMM_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/IntMM")
         local_predictor_size = local_predictor_size * 2
 
@@ -327,7 +327,7 @@ def Perm_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/Perm_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/Perm")
         local_predictor_size = local_predictor_size * 2
 
@@ -382,7 +382,7 @@ def Puzzle_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/Puzzle_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/Puzzle")
         local_predictor_size = local_predictor_size * 2
 
@@ -438,7 +438,7 @@ def Towers_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/Towers_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/Towers")
         local_predictor_size = local_predictor_size * 2
 
@@ -494,7 +494,7 @@ def RealMM_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/RealMM_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/RealMM")
         local_predictor_size = local_predictor_size * 2
 
@@ -550,7 +550,7 @@ def Quicksort_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/Quicksort_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/Quicksort")
         local_predictor_size = local_predictor_size * 2
 
@@ -606,7 +606,7 @@ def Queens_benchmark():
 
     global_predictor_size = 4096
     local_predictor_size = 256
-    while global_predictor_size < 8192:
+    while local_predictor_size < 8192:
         os.system("./build/ARM/gem5.opt -d se_results/Queens_local_predictor_size"+str(local_predictor_size)+" configs/example/arm/starter_se.py \--cpu=hpi --Icache-size='"+Icache_size+"' --Dcache-size='"+Dcache_size+"' --cache-line-size="+str(cache_line_size)+" --Icache-assoc=8 --Dcache-assoc="+Icache_assoc+" --branch-predictor='"+branch_predictor+"' --BTBEntries="+str(btb_entries)+" --local-predictor-size="+str(local_predictor_size)+" --global-predictor-size="+str(global_predictor_size)+" --choice-predictor-size="+str(choice_predictor_size)+" /home/e3r8ick/Arqui1/Proyecto2/gem5/se-benchmarks/Queens")
         local_predictor_size = local_predictor_size * 2
 
