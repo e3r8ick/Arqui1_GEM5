@@ -13,17 +13,9 @@ from fileManager import *
 # BP types: LocalBP, TournamentBP, BiModeBP
 # 
 # Return: a vector with the identifiers of the variables
-def getValuesVector (BPtype):
-    if (BPtype == "TournamentBP"):
-        valuesVector = readFile("Files/TournamentBPsearch.txt")
-    elif (BPtype == "LocalBP"):
-        valuesVector = readFile("Files/LocalBPsearch.txt")
-    else:
-        valuesVector = readFile("Files/BiModeBPsearch.txt")
-        
-    #split and clean
+def getValuesVector (fileName):
+    valuesVector = readFile(fileName)        
     valuesVector = valuesVector.split("\n")
-    
     while("" in valuesVector) : 
         valuesVector.remove("")
     return valuesVector
@@ -92,22 +84,21 @@ def printMatrix(matrix, data):
 
 
 
-# Takes 2 txt files, the stats.txt (var file) and the desierd variable names according
-# to the bramch predictor and extracts the variables and values from the stats.txt
+# Takes the stats.txt files, and a 
 #
 # Return: the matrix with variables and values
-def runParser(file, BPtype):
-    valuesVector = getValuesVector(BPtype)
-    matrix = parse(file)
-    clean = extract(matrix, valuesVector)
-    printMatrix(clean, 0)
+def runParser(fileName):
+    valuesFile = "Files/searchValues.txt"
+    valuesVector = getValuesVector(valuesFile)
+    parsedFile = parse(fileName)
+    clean = extract(parsedFile, valuesVector)
+    printMatrix(clean, 1)
     return clean
 
 
 # Development test
 def test():
-    myFile = "Files/stats.txt"
-    testBP = "LocalBP"
-    runParser(myFile, testBP)
-
+    myFile = "Files/testStats.txt"
+    runParser(myFile)
+    return 0
 
