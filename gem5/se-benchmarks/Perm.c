@@ -163,7 +163,7 @@ void Perm ()    {   /* Perm */
 int main()
 {
 	int i;
-	for (i = 0; i < 100; i++) Perm();
+	for (i = 0; i < 30; i++) Perm();
 	return 0;
 }
 

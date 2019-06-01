@@ -220,6 +220,6 @@ void Puzzle ()  {
 int main()
 {
 	int i;
-	for (i = 0; i < 100; i++) Puzzle();
+	for (i = 0; i < 30; i++) Puzzle();
 	return 0;
 }

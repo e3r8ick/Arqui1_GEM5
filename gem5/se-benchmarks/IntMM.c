@@ -154,6 +154,6 @@ void Intmm (int run) {
 int main()
 {
 	int i;
-	for (i = 0; i < 10; i++) Intmm(i);
+	for (i = 0; i < 3; i++) Intmm(i);
 	return 0;
 }

@@ -168,7 +168,7 @@ void Quick (int run) {
 int main()
 {
 	int i;
-	for (i = 0; i < 100; i++) Quick(i);
+	for (i = 0; i < 30; i++) Quick(i);
 	return 0;
 }
 
