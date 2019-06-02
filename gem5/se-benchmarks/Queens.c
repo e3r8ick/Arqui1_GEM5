@@ -34,8 +34,8 @@
 #define srtelements  500
 
     /* fft */
-#define fftsize 	 256 
-#define fftsize2 	 129  
+#define fftsize 	 256
+#define fftsize2 	 129
 /*
 type */
     /* Perm */
@@ -124,7 +124,7 @@ int Rand () {
 
     /* The eight queens problem, solved 50 times. */
 /*
-	type    
+	type
 	    doubleboard =   2..16;
 	    doublenorm  =   -7..7;
 	    boardrange  =   1..8;
@@ -158,7 +158,7 @@ void Try(int i, int *q, int a[], int b[], int c[], int x[]) {
 	    }
 	}
 }
-	
+
 void Doit () {
 	int i,q;
 	int a[9], b[17], c[15], x[9];
@@ -183,6 +183,6 @@ void Queens (int run) {
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Queens(i);
+	for (i = 0; i < 1; i++) Queens(i);
 	return 0;
 }

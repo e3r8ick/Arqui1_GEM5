@@ -34,8 +34,8 @@
 #define srtelements  500
 
     /* fft */
-#define fftsize 	 256 
-#define fftsize2 	 129  
+#define fftsize 	 256
+#define fftsize2 	 129
 /*
 type */
     /* Perm */
@@ -154,6 +154,6 @@ void Intmm (int run) {
 int main()
 {
 	int i;
-	for (i = 0; i < 3; i++) Intmm(i);
+	for (i = 0; i < 1; i++) Intmm(i);
 	return 0;
 }

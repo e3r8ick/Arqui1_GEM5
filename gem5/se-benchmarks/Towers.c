@@ -34,8 +34,8 @@
 #define srtelements  500
 
     /* fft */
-#define fftsize 	 256 
-#define fftsize2 	 129  
+#define fftsize 	 256
+#define fftsize2 	 129
 /*
 type */
     /* Perm */
@@ -121,7 +121,7 @@ int Rand () {
     return( (int)seed );     /* typecast back to int WR*/
 }
 
- 
+
     /*  Program to Solve the Towers of Hanoi */
 
 void Error (char *emsg) 	{
@@ -138,7 +138,7 @@ int Getelement () {
 	    temp = freelist;
 	    freelist = cellspace[freelist].next;
 	}
-	else 
+	else
 	    Error("out of space   ");
 	return (temp);
 }
@@ -213,6 +213,6 @@ void Towers ()    { /* Towers */
 int main()
 {
 	int i;
-	for (i = 0; i < 20; i++) Towers();
+	for (i = 0; i < 1; i++) Towers();
 	return 0;
 }
