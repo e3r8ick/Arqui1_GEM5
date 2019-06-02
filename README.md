@@ -32,3 +32,17 @@ Luego ejecutar el archivo de benchmarks automátizados
 ```
 python benchmarks.py
 ```
+# Visualizar resultados
+Para crear graficas de los resultados se debe acceder en la carpeta de python:
+```
+cd python
+```
+Se debe instalar Matplotlib
+```
+sudo apt-get install python3-matplotlib
+```
+
+Finalmente ejecutar el archivo de graficacion
+```
+python3 plot.py
+```

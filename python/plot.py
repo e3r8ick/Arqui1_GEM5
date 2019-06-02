@@ -1,6 +1,8 @@
+
 import numpy as np
 import matplotlib.pyplot as plt
 
+from parse import *
 ''' 
     barPlot function takes: 
         arg title: title for the plot
@@ -16,4 +18,15 @@ def barPlot(title, data, ylabel,xlabels):
     ax.set_title(title)
     plt.show()
 
-barPlot("sample plot", [45,78,85,56,68],"values",['one','two','three','four','five'])
+
+M64 = runParser("../../se_results/Queens_cache_line_size64/stats.txt")
+M128 = runParser("../../se_results/Queens_cache_line_size128/stats.txt")
+
+
+
+print(M64[16][0])
+print(float(M64[16][1]))
+
+
+
+barPlot("sample plot", [float(M64[16][1]),float(M128[16][1])],"values",[M64[16][0],M128[16][0]])
