@@ -24,10 +24,11 @@ Cuando haya realizado la compilación puede copiar el resto de archivos dentro d
 # Benchmarks
 
 Para ejecutar los benchmarks se debe acceder en la carpeta de gem5:
-...
+```
 cd gem5
-...
+```
+
 Luego ejecutar el archivo de benchmarks automátizados
-...
+```
 python benchmarks.py
-...
+```
