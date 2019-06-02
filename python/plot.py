@@ -15,38 +15,44 @@ from parse import *
                     e.g MissRate)
         arg groupLabels: Group Label (name of benchmark e.g Queens)
         arg barLabels: labels for the bars (parameter value eg Icache=512Kb)
-        arg colors: colors for the bars
 '''
 
 
-def groupBarPlot(title, data, ylabel, groupLlabels, barLabels, colors):
+def groupBarPlot(title, data, ylabel, groupLlabels, barLabels):
     #define the plot figure
     fig, ax = plt.subplots()
     
     #setup dimension variables
-    ind = np.arange(len(data)) #position for the grops
-    ind = ind * len(groupLlabels)
-    width = 0.5  # the width of the bars
+    ind = np.arange(len(data[0])) #position for the grops
+    width = 1  # the width of the bars
     
     #drawing individual bars
-    for col in data:
-        
-        drawSubPlot(ax, ind, col, width, barLabels)
+    count=0
+    for row in data:
+        drawSubPlot(ax,2*len(barLabels) * ind - (count+1) , row, width, barLabels[count])
+        count += 1
     
-    #setting general plot labels
-    ax.set_xticklabels(['']+[barLabels[0]])
+    #setting plot's general labels
+    ax.set_xticks(2*len(barLabels)*ind-len(barLabels))
+    ax.set_xticklabels(groupLlabels)
     ax.set_title(title)
+    ax.legend()
+    
     plt.show()
 
 
 def drawSubPlot(ax, ind, dataVector, width, label):
-    ax.bar(ind, dataVector, align='center', width=width)
+    
+    ax.bar(ind, dataVector, align='center', width=width,label=label)
 
 
 
+# groupBarPlot("sample plot", [[5,20,7],[7,14,10],[15,9,6]], "misses",['Queens','Perm','IntMM'],['512','256','128'])
+
+# groupBarPlot("sample plot", [[5,20,7],[7,14,10],[15,9,6],[11,9,5]], "misses",['Queens','Perm','IntMM'],['512','256','128','64'])
+
+# groupBarPlot("sample plot", [[5,20],[7,14],[12,7]], "misses",['Queens','Perm'],['512','256','128'])
 
 
-
-groupBarPlot("sample plot", [float(M64[1][1]), float(M128[1][1])], "values", [M64[1][0], M128[1][0]],getTags(),2)
-
+groupBarPlot("sample plot", [[5,20,7,11,9,13],[7,14,10,3,7,6],[15,9,6,10,8,2],[11,9,5,14,3,10]], "misses",['Queens','Perm','IntMM','FloatMM','Towers','Tree'],['512','256','128','64'])
 
