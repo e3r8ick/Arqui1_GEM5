@@ -34,6 +34,7 @@ def groupBarPlot(title, data, ylabel, groupLlabels, barLabels):
     
     #setting plot's general labels
     ax.set_xticks(2*len(barLabels)*ind-len(barLabels))
+    ax.set_ylabel(ylabel)
     ax.set_xticklabels(groupLlabels)
     ax.set_title(title)
     ax.legend()
@@ -56,3 +57,6 @@ def drawSubPlot(ax, ind, dataVector, width, label):
 
 groupBarPlot("sample plot", [[5,20,7,11,9,13],[7,14,10,3,7,6],[15,9,6,10,8,2],[11,9,5,14,3,10]], "misses",['Queens','Perm','IntMM','FloatMM','Towers','Tree'],['512','256','128','64'])
 
+M64 = runParser("../gem5/se_results/Queens_cache_line_size64/stats.txt")
+
+print(M64)
