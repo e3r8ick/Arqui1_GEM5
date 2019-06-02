@@ -93,7 +93,7 @@ def runParser(fileName):
     valuesVector = getValuesVector(valuesFile)
     parsedFile = parse(fileName)
     clean = extract(parsedFile, valuesVector)
-    printMatrix(clean, 1)
+    #printMatrix(clean, 1)
     return clean
 
 # Loads usable variable names for graphics
