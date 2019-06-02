@@ -20,3 +20,11 @@ Basado en un fundamento teórico debe variar los siguientes parámetros del sist
 Una vez descargado y antes de compilar gem5 (http://www.gem5.org/Introduction), ingrese al directorio gem5, copie el directorio src a su directorio de descarga de gem5 permitiendole sobreescribir los archivos que ahí se encuentran. Entonces comile gem5 commo indica la documentación oficial.
 
 Cuando haya realizado la compilación puede copiar el resto de archivos dentro del directorio gem5 permitiendo reemplazar los que sea necesario.
+
+# Benchmarks
+
+Para ejecutar los benchmarks se debe acceder en la carpeta de gem5:
+-> cd gem5
+
+Luego ejecutar el archivo de benchmarks automátizados
+-> python benchmarks.py
