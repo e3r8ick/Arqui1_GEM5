@@ -32,7 +32,7 @@ values_local_predictor_size_Tournament = ["256","512","1024","2048","4096"]
 
 
 # arreglo de todos los nombres de los benchmarks
-benchmarks_array = ["FloatMM","IntMM","Perm","Queens","Towers","Treesort"]
+benchmarks_array = ["IntMM","Perm","Queens","Towers","Treesort"]
 
 def getData():    
     # numero de benchmarks
@@ -105,25 +105,21 @@ def getData():
                     m_file_name = runParser(PATH + benchmarks_array[i] + variables_array[j] + values_local_predictor_size_Tournament[k] + FILENAME)
                     results_array.append(m_file_name)          
         if i == 0:
-            results_array_FloatMM.append(results_array)
-            results_array = [] 
-        elif i == 1:
             results_array_IntMM.append(results_array)
             results_array = [] 
-        elif i == 2:
+        elif i == 1:
             results_array_Perm.append(results_array)
             results_array = []
-        elif i == 3:
+        elif i == 2:
             results_array_Queens.append(results_array)
             results_array = []
-        elif i == 4:
+        elif i == 3:
             results_array_Towers.append(results_array)
             results_array = []
-        elif i == 5:
+        elif i == 4:
             results_array_Treesort.append(results_array)
             results_array = []
-    results_array = {"FloatMM":results_array_FloatMM,
-                     "IntMM":results_array_IntMM,
+    results_array = {"IntMM":results_array_IntMM,
                      "Perm":results_array_Perm,
                      "Queens":results_array_Queens,
                      "Towers":results_array_Towers,
@@ -132,7 +128,6 @@ def getData():
 
 def infoSplitter(info_dic):
     # get de las matrices de cada benchmark
-    FloatMM = info_dic['FloatMM'][0]
     IntMM = info_dic['IntMM'][0]
     Perm = info_dic['Perm'][0]
     Queens = info_dic['Queens'][0]
@@ -140,7 +135,7 @@ def infoSplitter(info_dic):
     Treesort = info_dic['Treesort'][0]
 
     # tamaño de la cantidad de pruebas, todos son iguales
-    n = len(FloatMM)
+    n = len(IntMM)
     n_tags = len(getTags())
 
     global variables_array
@@ -150,37 +145,140 @@ def infoSplitter(info_dic):
 
     # escoge la variable para analizar de values vector (tags)
     for i in range(0,n_tags):
-        vector_graf = []
         # escoge tamaño del benchmarks (varaibles)
-        for j in range(0,n_parametros):
-            if j == 0:
-                for k in range(0,2):
-                    floatmm = float(FloatMM[j][k][1])
-                    intmm = float(IntMM[j][k][1])
-                    perm = float(Perm[j][k][1])
-                    queens = float(Queens[j][k][1])
-                    towers = float(Towers[j][k][1])
-                    treesort = float(Treesort[j][k][1])
-                    vector_graf.append([floatmm,intmm,perm,queens,towers,treesort])
-                groupBarPlot("Tournament btb entries",vector_graf,getTags()[i],benchmarks_array,["256","512",""])
+        vector_graf = []
+        # btb entries
+        for k in range(0,3):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        groupBarPlot("Tournament btb entries",vector_graf,getTags()[i],benchmarks_array,["256","512","1024"])
+
+        vector_graf = []
+
+        # chache line size
+        for k in range(3,5):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        groupBarPlot("Cache Line Size",vector_graf,getTags()[i],benchmarks_array,["32","64"])
+
+        vector_graf = []
+
+        # Dcache assoc
+        for k in range(5,9):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        groupBarPlot("DCache Assoc HOLIS",vector_graf,getTags()[i],benchmarks_array,["2","4","8","16"])
+
+        vector_graf = []
+
+        # Dcache size
+        for k in range(9,13):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        groupBarPlot("DCache Size",vector_graf,getTags()[i],benchmarks_array,["16Kb","32kB","64kB","128kB"])
+
+        vector_graf = []
+
+        # global predictor size BiMode
+        for k in range(13,18):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        #print(vector_graf)
+        groupBarPlot("Global predictor Size BiMode",vector_graf,getTags()[i],benchmarks_array,["256","512","1024","2048","4096"])
+
+        vector_graf = []
+
+        # global predictor size Tournament
+        for k in range(18,23):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        #print(vector_graf)
+        groupBarPlot("Global predictor Size Tournament",vector_graf,getTags()[i],benchmarks_array,["256","512","1024","2048","4096"])
+
+        vector_graf = []
+
+        # Dcache assoc pero talvez, solo talvez nmo sea eso, sino Icache
+        for k in range(23,27):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        #print(vector_graf)
+        groupBarPlot("Dcache Assoc",vector_graf,getTags()[i],benchmarks_array,["2","4","8","16"])
+
+        vector_graf = []
+
+        # Icache size
+        for k in range(27,31):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        #print(vector_graf)
+        groupBarPlot("I cache Size",vector_graf,getTags()[i],benchmarks_array,["16kB","32kB","64kB","128kB"])
+
+        vector_graf = []
+
+
+        # local predictor size local
+        for k in range(31,36):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        #print(vector_graf)
+        groupBarPlot("Local Predictor Size Local",vector_graf,getTags()[i],benchmarks_array,["256","512","1024","2048","4096"])
+
+        vector_graf = []
+
+        # local predictor size tournament
+        for k in range(36,41):
+            intmm = float(IntMM[k][i][1])
+            perm = float(Perm[k][i][1])
+            queens = float(Queens[k][i][1])
+            towers = float(Towers[k][i][1])
+            treesort = float(Treesort[k][i][1])
+            vector_graf.append([intmm,perm,queens,towers,treesort])
+        #print(vector_graf)
+        groupBarPlot("Local Predictor Size Tournament",vector_graf,getTags()[i],benchmarks_array,["256","512","1024","2048","4096"])
+
                 
 
 
-
+# result[nombre benchmark][diccionario:0][parametro][tag][valor:1]
 
 
 def main():
     results = getData()
     infoSplitter(results)
-    # r = results['FloatMM'][0][0][1][1]
-    # r2 =results['IntMM'][0][0][1][1]
-
-    # r3 = results['FloatMM'][0][1][1][1]
-    # r4 =results['IntMM'][0][1][1][1]
-    # print(r,r2,r3,r4)
-
-    # tag=getTags()[1]
-    # print(tag)
-    # groupBarPlot("Tournament btb entries",[[float(r),float(r2)],[float(r3),float(r4)]],tag,["FloatMM","IntMM"],["256","512"])
-
 main()

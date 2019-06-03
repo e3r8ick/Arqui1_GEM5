@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from parse import *
 
+import matplotlib as plt2
+plt2.rcParams.update({'figure.max_open_warning': 0})
+
 ''' 
     groupBarPlot function takes: 
         arg title: title for the plot
@@ -39,7 +42,7 @@ def groupBarPlot(title, data, ylabel, groupLlabels, barLabels):
     ax.set_title(title)
     ax.legend()
     
-    plt.show()
+    plt.savefig("graficos/"+title+' '+ylabel+'.png')
 
 
 def drawSubPlot(ax, ind, dataVector, width, label):
@@ -55,8 +58,6 @@ def drawSubPlot(ax, ind, dataVector, width, label):
 # groupBarPlot("sample plot", [[5,20],[7,14],[12,7]], "misses",['Queens','Perm'],['512','256','128'])
 
 
-groupBarPlot("sample plot", [[5,20,7,11,9,13],[7,14,10,3,7,6],[15,9,6,10,8,2],[11,9,5,14,3,10]], "misses",['Queens','Perm','IntMM','FloatMM','Towers','Tree'],['512','256','128','64'])
+#groupBarPlot("sample plot", [[5,20,7,11,9,13],[7,14,10,3,7,6],[15,9,6,10,8,2],[11,9,5,14,3,10]], "misses",['Queens','Perm','IntMM','FloatMM','Towers','Tree'],['512','256','128','64'])
 
-M64 = runParser("../gem5/se_results/Queens_cache_line_size64/stats.txt")
-
-print(M64)
+#M64 = runParser("../gem5/se_results/Queens_cache_line_size64/stats.txt")
